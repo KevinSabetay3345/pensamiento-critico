@@ -1,7 +1,7 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import ReactPlayer from 'react-player';
 import './postlist.css';
 
@@ -26,7 +26,7 @@ const Postlist = () => {
                 setError(err.message);
                 setIsLoading(false);
             });
-    }, []);
+    }, [id]);
 
     if (isLoading)
         return (
@@ -58,7 +58,7 @@ const Postlist = () => {
                             </div>
                             <p className="card-text text-center"><small className="text-muted">Uploaded by {/*post.userNickname*/} at {post.time}</small></p>
                             { Cookies.getJSON('user') && Cookies.getJSON('user').id === post.userId && 
-                            <a className="text-center" href={`/postform/${post._id}`}>Editar</a> }
+                            <Link className="text-center" to={`/postform/${post._id}`}>Editar</Link> }
                         </div>
                     </div>
                 )
